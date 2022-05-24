@@ -25,6 +25,9 @@ func (r *repository) MicrobatchInsertEvent(eventBatch *dto.EventBatch, collName 
 		documents = append(documents, v)
 	}
 
+	if len(documents) == 0 {
+		return
+	}
 	_, err = coll.InsertMany(context.Background(), documents)
 	if err != nil {
 		r.logger.Errorf("error inserting to mongodb for %+v: %+v", documents, err)
