@@ -10,7 +10,7 @@ import (
 
 type Repository interface {
 	InsertEvent(event model.EventData, collName string) (err error)
-	MicrobatchInsertEvent(eventBatch *dto.EventBatch) (err error)
+	MicrobatchInsertEvent(eventBatch *dto.EventBatch, collName string) (err error)
 }
 
 type repository struct {

@@ -9,6 +9,5 @@ import (
 type EventBatch struct {
 	Mu *sync.Mutex
 
-	CollName       string
 	BatchEventData []model.EventData
 }

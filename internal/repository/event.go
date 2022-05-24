@@ -18,8 +18,8 @@ func (r *repository) InsertEvent(event model.EventData, collName string) (err er
 	return
 }
 
-func (r *repository) MicrobatchInsertEvent(eventBatch *dto.EventBatch) (err error) {
-	coll := r.mongo.Collection(eventBatch.CollName)
+func (r *repository) MicrobatchInsertEvent(eventBatch *dto.EventBatch, collName string) (err error) {
+	coll := r.mongo.Collection(collName)
 	var documents []interface{}
 	for _, v := range eventBatch.BatchEventData {
 		documents = append(documents, v)

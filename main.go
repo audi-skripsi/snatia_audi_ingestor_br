@@ -4,6 +4,8 @@ import (
 	"github.com/audi-skripsi/snatia_audi_ingestor_be/cmd/http"
 	"github.com/audi-skripsi/snatia_audi_ingestor_be/internal/component"
 	"github.com/audi-skripsi/snatia_audi_ingestor_be/internal/config"
+	"github.com/audi-skripsi/snatia_audi_ingestor_be/internal/repository"
+	"github.com/audi-skripsi/snatia_audi_ingestor_be/internal/service"
 	"github.com/audi-skripsi/snatia_audi_ingestor_be/pkg/util/logutil"
 	"github.com/labstack/echo/v4"
 	"github.com/sirupsen/logrus"
@@ -37,9 +39,22 @@ func main() {
 		logger.Fatalf("[main] error initializing mongodb: %+v", err)
 	}
 
-	http.StartServer(&http.ServerInitParams{
+	repository := repository.NewRepository(repository.NewRepositoryParams{
 		Logger: logger,
 		Config: conf,
-		Ec:     ec,
+		Mongo:  mongo,
+	})
+
+	service := service.NewService(service.NewServiceParams{
+		Logger:     logger,
+		Repository: repository,
+		Config:     conf,
+	})
+
+	http.StartServer(&http.ServerInitParams{
+		Logger:  logger,
+		Config:  conf,
+		Ec:      ec,
+		Service: service,
 	})
 }

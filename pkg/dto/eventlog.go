@@ -1,9 +1,8 @@
 package dto
 
 type EventLog struct {
-	UID       string      `json:"uid"`
-	Level     string      `json:"level"`
-	AppName   string      `json:"app_name"`
-	Data      interface{} `json:"data"`
-	Timestamp int64       `json:"timestamp"`
+	Level     string `json:"level"`
+	AppName   string `json:"app_name"`
+	Message   string `json:"message"`
+	Timestamp int64  `json:"timestamp"`
 }
