@@ -5,6 +5,9 @@ export const options = {
   iterations: 10000,
 };
 
+const rawData = open("data-sample.json");
+const testData = JSON.parse(rawData);
+
 export default function () {
   const mode = __ENV.MODE;
   let reqPath = "";
@@ -17,10 +20,15 @@ export default function () {
     return;
   }
 
-  http.post("http://localhost:8080" + reqPath, {
-    level: "info",
-    app_name: "test-appname",
-    message: "test-message",
-    timestamp: 1653307474,
-  });
+  const randInt = Math.floor(Math.random() * testData.length);
+
+  http.post(
+    "http://localhost:8080" + reqPath,
+    JSON.stringify(testData[randInt]),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 }

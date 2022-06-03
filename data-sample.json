@@ -1,0 +1,20 @@
+[
+    {
+        "level": "error",
+        "app_name": "snatia-app",
+        "message": "error occured, user id 212 cannot send message to user id 125",
+        "timestamp": 1653307474
+    },
+    {
+        "level": "info",
+        "app_name": "snatia-app",
+        "message": "payment to bank id 12 initiated with request id 416d9099-feef-4719-a9e4-c8531a4804da",
+        "timestamp": 1653307474
+    },
+    {
+        "level": "warn",
+        "app_name": "snatia-app",
+        "message": "user id 212 has sent more than 50 request under 1 second",
+        "timestamp": 1653307474
+    }
+]
